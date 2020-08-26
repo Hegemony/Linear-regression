@@ -91,7 +91,7 @@ for param_group in optimizer.param_groups:
 '''
 训练模型
 '''
-num_epochs = 4
+num_epochs = 10
 for epoch in range(1, num_epochs+1):
     for X, y in data_iter:
         output = net(X)
@@ -103,4 +103,9 @@ for epoch in range(1, num_epochs+1):
     print('epoch %d, loss: %f' % (epoch, l.item()))
     # print(l, l.item())  l返回的是tensor，l.item()返回的是该tensor的数值
 
-
+'''
+下面我们分别比较学到的模型参数和真实的模型参数。我们从net获得需要的层，并访问其权重（weight）和偏差（bias）。
+学到的参数和真实的参数很接近。
+'''
+print(true_w, net.linear.weight)
+print(true_b, net.linear.bias)
